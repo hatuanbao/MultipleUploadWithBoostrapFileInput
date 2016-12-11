@@ -1,0 +1,36 @@
+﻿<link href="~/Content/fileinput.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Multiple Upload File</h2>
+
+@using (Html.BeginForm("MultipleUpload",
+                            "Upload",
+                            FormMethod.Post,
+                            htmlAttributes: new { enctype = "multipart/form-data" }))
+{
+    <input type='file' name='FileUpload' id='upload' multiple='multiple' class="file-loading" />
+}
+
+<script>
+    $(document).ready(function () {
+        $("#upload").fileinput({
+            //initialPreview: [
+            //    'http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg',
+            //    'http://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Earth_Eastern_Hemisphere.jpg/600px-Earth_Eastern_Hemisphere.jpg'
+            //],
+            //initialPreviewAsData: true,
+            //initialPreviewConfig: [
+            //    { caption: "Moon.jpg", size: 930321, width: "120px", key: 1 },
+            //    { caption: "Earth.jpg", size: 1218822, width: "120px", key: 2 }
+            //],
+            //deleteUrl: "/site/file-delete",
+            //overwriteInitial: false,
+            //maxFileSize: 100,
+            initialCaption: "Please upload your images"
+        });
+    });
+</script>
