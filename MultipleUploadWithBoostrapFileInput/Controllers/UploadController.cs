@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MultipleUploadWithBoostrapFileInput.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,8 +15,17 @@ namespace MultipleUploadWithBoostrapFileInput.Controllers
         }
 
         [HttpPost]
-        public ActionResult UploadFile()
+        public ActionResult UploadFile(FileUpload model)
         {
+            foreach (var file in model.FileUploads)
+            {
+                if (file != null && file.ContentLength > 0)
+                {
+                    var path = Server.MapPath("~/Content/UploadImages/" + file.FileName);
+                    file.SaveAs(path);
+                }
+            }
+
             return View("Index");
         }
     }

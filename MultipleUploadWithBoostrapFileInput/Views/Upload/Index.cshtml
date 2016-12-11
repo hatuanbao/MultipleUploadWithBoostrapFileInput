@@ -1,18 +1,23 @@
 ﻿<link href="~/Content/fileinput.min.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 
+@using MultipleUploadWithBoostrapFileInput.Models
+@model FileUpload
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Multiple Upload File</h2>
 
-@using (Html.BeginForm("MultipleUpload",
+@using (Html.BeginForm("UploadFile",
                             "Upload",
                             FormMethod.Post,
                             htmlAttributes: new { enctype = "multipart/form-data" }))
 {
-    <input type='file' name='FileUpload' id='upload' multiple='multiple' class="file-loading" />
+    @*<input type='file' name='FileUpload' id='upload' multiple='multiple' class="file-loading" />*@
+    // use html helper of MVC
+    @Html.TextBoxFor(m => m.FileUploads, new { id = "upload", type = "file", multiple = "multiple", @class= "file-loading" })
 }
 
 <script>
